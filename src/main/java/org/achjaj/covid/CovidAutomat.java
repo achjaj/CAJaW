@@ -83,6 +83,10 @@ public class CovidAutomat {
         return getRegionByCode(regions.get(name));
     }
 
+    public HashMap<String, Integer> getRegions() {
+        return regions;
+    }
+
     private final String[] listOfRegions = {
         "Lučenec;1",
         "Rimavská Sobota;2",
