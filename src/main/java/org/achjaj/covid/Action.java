@@ -2,9 +2,10 @@ package org.achjaj.covid;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Action {
+public class Action implements Serializable {
     private String label,
                     text,
                     detail,

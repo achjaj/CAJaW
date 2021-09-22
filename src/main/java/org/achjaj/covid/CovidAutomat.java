@@ -19,6 +19,9 @@ public class CovidAutomat {
         mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
     }
 
+    public static final String[] colors = new String[]{"#74b643", "#ff8b02", "#e40017", "#830029", "#000000"};
+    public static final String[] levels = new String[]{"Monitoring", "Ostražitosť", "1. stupeň ohrozenia", "2. stupeň ohrozenia", "3. stupeň ohrozenia"};
+
     private final String baseUrl = "https://automat.gov.sk/api/automat/code/%d";
     private final HashMap<String, Integer> regions = new HashMap<>();
     private String userAgent;

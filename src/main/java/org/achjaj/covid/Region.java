@@ -2,7 +2,9 @@ package org.achjaj.covid;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-public class Region {
+import java.io.Serializable;
+
+public class Region implements Serializable {
     private String region,
                     lang;
 
