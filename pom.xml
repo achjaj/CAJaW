@@ -5,8 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.achjaj</groupId>
-    <artifactId>covid-automat-lib</artifactId>
+    <artifactId>cajaw-lib</artifactId>
     <version>1.0</version>
+    
+    <name>CAJaW</name>
+    <description>Java wrapper around API used by automat.gov.sk</description>
+    <url>https://github.com/achjaj/CAJaW</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Jakub Bucko</name>
+            <email>bucko.jakub@protonmail.com</email>
+            <url>https://github.com/achjaj</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/achjaj/CAJaW.git</connection>
+        <developerConnection>scm:git:ssh://github.com:achjaj/CAJaW.git</developerConnection>
+        <url>http://github.com/achjaj/CAJaW/tree/master</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
