@@ -4,7 +4,7 @@
  * This file is distributed under the MIT license. The wording of the license can be found here: https://mit-licens.org/
  */
 
-package org.achjaj.covid;
+package org.achjaj.cajaw;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

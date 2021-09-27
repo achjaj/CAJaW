@@ -7,7 +7,7 @@
     <groupId>com.achjaj</groupId>
     <artifactId>cajaw-lib</artifactId>
     <version>1.0</version>
-    
+
     <name>CAJaW</name>
     <description>Java wrapper around API used by automat.gov.sk</description>
     <url>https://github.com/achjaj/CAJaW</url>

@@ -4,7 +4,7 @@
  * This file is distributed under the MIT license. The wording of the license can be found here: https://mit-licens.org/
  */
 
-package org.achjaj.covid;
+package org.achjaj.cajaw;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -93,7 +93,7 @@ public class CovidAutomat {
     /**
      * Parse response of GET request from the URL.
      * @param url destination of GET request
-     * @return new instance of {@link org.achjaj.covid.Region} class
+     * @return new instance of {@link org.achjaj.cajaw.Region} class
      * @throws IOException thrown if error occurred while reading or parsing the response
      */
     private Region readURL(URL url) throws IOException {
@@ -125,7 +125,7 @@ public class CovidAutomat {
      *
      * The code is an integer from 1 to 79.
      * @param code the region code
-     * @return new instance of {@link org.achjaj.covid.Region} class filled with the data
+     * @return new instance of {@link org.achjaj.cajaw.Region} class filled with the data
      * @throws IOException thrown if the code was invalid or if there was parse error
      */
     public Region getRegionByCode(int code) throws IOException {
@@ -142,7 +142,7 @@ public class CovidAutomat {
      *
      * @see CovidAutomat#getRegions()
      * @param name string with the name of a region
-     * @return new instance of {@link org.achjaj.covid.Region} class filled with the data
+     * @return new instance of {@link org.achjaj.cajaw.Region} class filled with the data
      * @throws IOException thrown if the name was invalid or if there was parse error
      */
     public Region getRegionByName(String name) throws IOException {
