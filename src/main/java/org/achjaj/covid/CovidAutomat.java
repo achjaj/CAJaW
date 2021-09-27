@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Jakub Bucko.
+ *
+ * This file is distributed under the MIT license. The wording of the license can be found here: https://mit-licens.org/
+ */
+
 package org.achjaj.covid;
 
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -13,19 +19,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+
+/**
+ * Main library class.
+ *
+ * Use object of this class to call the API.
+ */
 public class CovidAutomat {
     protected static final ObjectMapper mapper = new ObjectMapper();
     static {
         mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
     }
 
+    /**
+     * Official colors (in hex) assigned to different stages.
+     *
+     * The array is ordered, this means that the color of 1st level is at index 0 and so on.
+     * There is no official color for 0th level.
+     */
     public static final String[] colors = new String[]{"#74b643", "#ff8b02", "#e40017", "#830029", "#000000"};
+
+    /**
+     * Official names for different levels.
+     *
+     * The array is ordered, this means that the name of 1st level is at index 0 and so on.
+     * There is no official name for 0th level.
+     */
     public static final String[] levels = new String[]{"Monitoring", "Ostražitosť", "1. stupeň ohrozenia", "2. stupeň ohrozenia", "3. stupeň ohrozenia"};
 
     private final String baseUrl = "https://automat.gov.sk/api/automat/code/%d";
     private final HashMap<String, Integer> regions = new HashMap<>();
     private String userAgent;
 
+    /**
+     * Constructor
+     * @param userAgent string to use as User Agent
+     */
     public CovidAutomat(String userAgent) {
         this.userAgent = userAgent;
 
@@ -36,10 +65,20 @@ public class CovidAutomat {
             );
     }
 
+    /**
+     * Constructor with default User Agent.
+     *
+     * The default User Agent is "org.achjaj.org.achjaj.CovidAutomat.CovidAutomat:$version"
+     */
     public CovidAutomat() {
         this("org.achjaj.org.achjaj.CovidAutomat.CovidAutomat:" + version());
     }
 
+
+    /**
+     * Get the version of the library in use.
+     * @return the version string
+     */
     public static String version() {
         InputStream stream = CovidAutomat.class.getResourceAsStream("version");
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
@@ -51,6 +90,12 @@ public class CovidAutomat {
         return null;
     }
 
+    /**
+     * Parse response of GET request from the URL.
+     * @param url destination of GET request
+     * @return new instance of {@link org.achjaj.covid.Region} class
+     * @throws IOException thrown if error occurred while reading or parsing the response
+     */
     private Region readURL(URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
@@ -62,6 +107,11 @@ public class CovidAutomat {
         return mapper.readValue(result, Region.class);
     }
 
+    /**
+     * Check region name validity
+     * @param name string to check
+     * @return true if the given string is in the key set of "regions" HashMap
+     */
     private boolean validRegion(String name) {
         for (String region : regions.keySet())
             if (region.equals(name))
@@ -70,6 +120,14 @@ public class CovidAutomat {
         return false;
     }
 
+    /**
+     * Get the region data by region code.
+     *
+     * The code is an integer from 1 to 79.
+     * @param code the region code
+     * @return new instance of {@link org.achjaj.covid.Region} class filled with the data
+     * @throws IOException thrown if the code was invalid or if there was parse error
+     */
     public Region getRegionByCode(int code) throws IOException {
         if (code < 1 || code > 79)
             throw new IOException("Invalid code: " + code);
@@ -79,6 +137,14 @@ public class CovidAutomat {
         return readURL(url);
     }
 
+    /**
+     * Get the region data by the region name.
+     *
+     * @see CovidAutomat#getRegions()
+     * @param name string with the name of a region
+     * @return new instance of {@link org.achjaj.covid.Region} class filled with the data
+     * @throws IOException thrown if the name was invalid or if there was parse error
+     */
     public Region getRegionByName(String name) throws IOException {
         if (!validRegion(name))
             throw new IOException("Unknown region: " + name);
@@ -86,6 +152,10 @@ public class CovidAutomat {
         return getRegionByCode(regions.get(name));
     }
 
+    /**
+     * Get the name of regions and their codes.
+     * @return map with the names and codes
+     */
     public HashMap<String, Integer> getRegions() {
         return regions;
     }

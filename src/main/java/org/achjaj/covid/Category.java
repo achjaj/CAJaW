@@ -1,7 +1,16 @@
+/*
+ * Copyright (c) 2021 Jakub Bucko.
+ *
+ * This file is distributed under the MIT license. The wording of the license can be found here: https://mit-licens.org/
+ */
+
 package org.achjaj.covid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Available categories of actions
+ */
 public enum Category {
     OSLAVYAPODUJATIA("Oslavy a podujatia"),
 
@@ -24,5 +33,13 @@ public enum Category {
 
     Category(String label) {
         this.label = label;
+    }
+
+    /**
+     * Get the official label of category
+     * @return the label
+     */
+    public String label() {
+        return label;
     }
 }
